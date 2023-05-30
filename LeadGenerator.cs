@@ -8,17 +8,29 @@ public class LeadGenerator
 
     public void GenerateLeads(string service)
     {
-        // Code to generate leads for the specified service
+        Console.WriteLine($"Generating leads for {service}...");
+        // Actual code for generating leads for the specified service
+
+        // Example code:
+        // ...
     }
 
     public void TrackLeads()
     {
-        // Code to track and manage leads generated
+        Console.WriteLine("Tracking leads...");
+        // Actual code for tracking and managing leads generated
+
+        // Example code:
+        // ...
     }
 
     public void CommunicateWithClients()
     {
-        // Code to communicate with clients regarding leads and services
+        Console.WriteLine("Communicating with clients...");
+        // Actual code for communicating with clients regarding leads and services
+
+        // Example code:
+        // ...
     }
 }
 
@@ -65,12 +77,19 @@ class Program
 
         List<LeadGenerator> leadGenerators = blueFireLeads.GetLeadGenerators();
 
-        // Perform lead generation operations, such as generating leads for specific services, tracking leads, and communicating with clients
-
-        Console.WriteLine("Lead Generators:");
         foreach (var leadGenerator in leadGenerators)
         {
-            Console.WriteLine($"Name: {leadGenerator.Name}, Expertise: {leadGenerator.Expertise}");
+            Console.WriteLine($"Lead Generator: {leadGenerator.Name}");
+            Console.WriteLine($"Expertise: {leadGenerator.Expertise}");
+
+            Console.WriteLine("Enter the service for lead generation:");
+            string service = Console.ReadLine();
+
+            leadGenerator.GenerateLeads(service);
+            leadGenerator.TrackLeads();
+            leadGenerator.CommunicateWithClients();
+
+            Console.WriteLine();
         }
     }
 }
