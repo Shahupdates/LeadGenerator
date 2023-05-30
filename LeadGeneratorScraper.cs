@@ -10,11 +10,9 @@ public class LeadGenerator
     public void GenerateLeads(string service)
     {
         Console.WriteLine($"Generating leads for {service}...");
+        
         // Actual code for generating leads for the specified service
-
-        // Example code for web scraping:
-        string url = "https://example.com/leads";
-        List<string> leads = ScrapeLeadsFromWebsite(url);
+        List<string> leads = ScrapeLeadsFromWebsite(service);
         
         Console.WriteLine($"Found {leads.Count} leads for {service}:");
         foreach (var lead in leads)
@@ -23,27 +21,32 @@ public class LeadGenerator
         }
     }
 
-    private List<string> ScrapeLeadsFromWebsite(string url)
+    private List<string> ScrapeLeadsFromWebsite(string service)
     {
         List<string> leads = new List<string>();
 
-        // Actual code for web scraping using HtmlAgilityPack or any other scraping library
+        // Actual code for web scraping using HtmlAgilityPack
+        string url = "https://example.com/leads";
+        
+        // Create HtmlWeb instance and load the website
         HtmlWeb web = new HtmlWeb();
-        HtmlDocument doc = web.Load(url);
+        HtmlDocument document = web.Load(url);
 
-        // Extract relevant lead information from the HTML document
-        // and populate the leads list
+        // Define XPath expression to select the desired lead elements
+        string xpathExpression = "//div[contains(@class, 'lead') and contains(., '" + service + "')]";
+        
+        // Select lead elements using the XPath expression
+        HtmlNodeCollection leadNodes = document.DocumentNode.SelectNodes(xpathExpression);
 
-        // Example code:
-        // var leadNodes = doc.DocumentNode.SelectNodes("//div[@class='lead']");
-        // if (leadNodes != null)
-        // {
-        //     foreach (var node in leadNodes)
-        //     {
-        //         string lead = node.InnerText;
-        //         leads.Add(lead);
-        //     }
-        // }
+        // Extract lead information from the selected nodes and populate the leads list
+        if (leadNodes != null)
+        {
+            foreach (var node in leadNodes)
+            {
+                string lead = node.InnerText.Trim();
+                leads.Add(lead);
+            }
+        }
 
         return leads;
     }
@@ -52,20 +55,12 @@ public class LeadGenerator
     {
         Console.WriteLine("Tracking leads...");
         // Actual code for tracking and managing leads generated
-
-        // Example code:
-        // ...
-        Console.WriteLine("Leads tracked successfully!");
     }
 
     public void CommunicateWithClients()
     {
         Console.WriteLine("Communicating with clients...");
         // Actual code for communicating with clients regarding leads and services
-
-        // Example code:
-        // ...
-        Console.WriteLine("Communication with clients completed!");
     }
 }
 
