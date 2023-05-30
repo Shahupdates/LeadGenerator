@@ -13,15 +13,18 @@ Install the .NET Core SDK from the official website: https://dotnet.microsoft.co
 Open a command prompt or terminal and navigate to the directory where you have saved the C# file.
 
 Run the following command to compile the code:
-
+```
 shell
 Copy code
 dotnet build
 Once the code is successfully compiled, run the program using the following command:
+```
 
+```
 shell
 Copy code
 dotnet run
 The program will prompt you to enter a service for lead generation. Follow the instructions and observe the output in the console.
+```
 
 By using the .NET Core framework, you can take advantage of the C# language and the extensive libraries and features provided by the framework to build a functional and scalable program for Blue Fire Leads.
