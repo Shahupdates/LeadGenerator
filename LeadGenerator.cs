@@ -13,6 +13,7 @@ public class LeadGenerator
 
         // Example code:
         // ...
+        Console.WriteLine("Leads generated successfully!");
     }
 
     public void TrackLeads()
@@ -22,6 +23,7 @@ public class LeadGenerator
 
         // Example code:
         // ...
+        Console.WriteLine("Leads tracked successfully!");
     }
 
     public void CommunicateWithClients()
@@ -31,6 +33,7 @@ public class LeadGenerator
 
         // Example code:
         // ...
+        Console.WriteLine("Communication with clients completed!");
     }
 }
 
