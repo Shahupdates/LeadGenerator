@@ -28,3 +28,5 @@ The program will prompt you to enter a service for lead generation. Follow the i
 ```
 
 By using the .NET Core framework, you can take advantage of the C# language and the extensive libraries and features provided by the framework to build a functional and scalable program for Blue Fire Leads.
+
+We can use the HttpClient class in C# to fetch the HTML content of a website and perform HTML parsing manually without relying on external libraries. 
