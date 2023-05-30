@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using HtmlAgilityPack;
+using System.Net.Http;
 
 public class LeadGenerator
 {
@@ -10,10 +10,9 @@ public class LeadGenerator
     public void GenerateLeads(string service)
     {
         Console.WriteLine($"Generating leads for {service}...");
-        
         // Actual code for generating leads for the specified service
         List<string> leads = ScrapeLeadsFromWebsite(service);
-        
+
         Console.WriteLine($"Found {leads.Count} leads for {service}:");
         foreach (var lead in leads)
         {
@@ -25,26 +24,30 @@ public class LeadGenerator
     {
         List<string> leads = new List<string>();
 
-        // Actual code for web scraping using HtmlAgilityPack
+        // Actual code for web scraping
         string url = "https://example.com/leads";
-        
-        // Create HtmlWeb instance and load the website
-        HtmlWeb web = new HtmlWeb();
-        HtmlDocument document = web.Load(url);
 
-        // Define XPath expression to select the desired lead elements
-        string xpathExpression = "//div[contains(@class, 'lead') and contains(., '" + service + "')]";
-        
-        // Select lead elements using the XPath expression
-        HtmlNodeCollection leadNodes = document.DocumentNode.SelectNodes(xpathExpression);
-
-        // Extract lead information from the selected nodes and populate the leads list
-        if (leadNodes != null)
+        // Create HttpClient instance
+        using (HttpClient client = new HttpClient())
         {
-            foreach (var node in leadNodes)
+            // Fetch the HTML content of the website
+            string htmlContent = client.GetStringAsync(url).Result;
+
+            // Extract lead information from the HTML content manually
+            // You can use string manipulation or regular expressions to parse the HTML and extract the desired leads
+
+            // Example code:
+            int startIndex = htmlContent.IndexOf("<div class=\"lead\">");
+            while (startIndex >= 0)
             {
-                string lead = node.InnerText.Trim();
-                leads.Add(lead);
+                int endIndex = htmlContent.IndexOf("</div>", startIndex);
+                if (endIndex > startIndex)
+                {
+                    string lead = htmlContent.Substring(startIndex, endIndex - startIndex);
+                    leads.Add(lead.Trim());
+                }
+
+                startIndex = htmlContent.IndexOf("<div class=\"lead\">", endIndex);
             }
         }
 
